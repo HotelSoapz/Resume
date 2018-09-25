@@ -1,0 +1,319 @@
+﻿@model ResumeBuilderContext.Models.Applicant
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <title></title>
+    <meta name="robots" content="noindex, nofollow" />
+    <style type="text/css" media="all">
+        html {
+            background-color: #EEE;
+            padding: 0 1em;
+        }
+
+        body {
+            background-color: #FFF;
+            font-family: "Trebuchet MS", Helvetica, Arial;
+            padding: 1em;
+            border: solid #AAA;
+            border-width: 1px 3px 3px 1px;
+            margin: 1em auto;
+            max-width: 50em;
+        }
+
+        #address {
+            position: relative;
+            right: 25px;
+            /*height: 5em;
+            width: 55em;
+            margin: 1em 0 1em 0;*/
+        }
+
+            #address div {
+                width: 20em;
+                float: left;
+                padding: 0 .0em 0 1.0em;
+                /*border-left: 1px solid #CCC;*/
+            }
+
+                #address div#first {
+                    border-left: none;
+                }
+
+            #address h3 {
+                border-bottom: none;
+                margin-top: -20px;
+            }
+
+        .date {
+            font-size: .8em;
+            margin-top: .4em;
+            text-align: right;
+        }
+
+        abbr, acronym {
+            border-bottom: 1px dotted #333;
+            cursor: help;
+        }
+
+        address {
+            font-style: italic;
+            color: #333;
+            font-size: .9em;
+        }
+
+
+        h1 {
+            font-size: 1.5em;
+            font-family: Helvetica, Verdana, Arial, sans-serif;
+        }
+
+        h2 {
+            clear: both;
+            font-size: 1.8em;
+            font-weight: bold;
+            margin-top: .75em;
+            font-variant: small-caps;
+            padding-left: .25em;
+            /*background-color: #EEE;*/
+            letter-spacing: .06em;
+        }
+
+        h3 {
+            clear: both;
+            font-size: 1.8em;
+            font-weight: bold;
+            margin-top: .75em;
+            font-variant: small-caps;
+            padding-left: .25em;
+            /*background-color: #EEE;*/
+            letter-spacing: .06em;
+        }
+
+        #description {
+            position: relative;
+            right: 25px;
+        }
+
+        #employer {
+            font-weight: bold;
+            font-size: 1.3em;
+        }
+
+        #skill {
+            position: relative;
+            left: 25px;
+        }
+
+        #workexperiance {
+            position: relative;
+            right: 25px;
+        }
+
+        #education {
+            position: relative;
+            right: 25px;
+        }
+
+        #school {
+            font-weight: bold;
+            font-size: 1.3em;
+        }
+
+        #empstartend {
+            font: italic;
+            font-size: .65em;
+            position: relative;
+            left: 250px
+        }
+
+        #refrences {
+            position: relative;
+            right: 25px;
+        }
+
+        #refprop {
+            position: relative;
+        }
+
+        #name {
+            position: relative;
+            margin-top: 15px;
+            left: 18.3%;
+        }
+
+        #skilltitle {
+            position: relative;
+            margin-top: 25px;
+        }
+
+        #obtitle {
+            position: relative;
+            font-weight: 100;
+        }
+
+        #summary {
+            position: relative;
+            left: 18px;
+        }
+
+        #addressdetail{
+            position: relative;
+            
+        }
+    </style>
+    <style type="text/css" media="print">
+        body {
+            background-color: #FFF;
+            border-width: 0 0 0 0;
+            margin: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="name">
+        <div class="row">
+            <div class="col-md7-">
+                <h2>@Html.DisplayFor(model => model.FullName)</h2>
+
+            </div>
+
+        </div>
+    </div>
+    <hr />
+    <br />
+    <div>
+
+        <div class="container" id="address">
+            <div class="row">
+                <div class="col-md-6">
+                    <h3>Permanent Address</h3>
+                    <div id="addressdetail">
+                        @Html.DisplayName(Model.StreedAddress)<br>
+                        @Html.DisplayName(Model.City)<br>
+                        @Html.DisplayName(Model.State)
+                        @Html.DisplayName(Model.ZipCode)<br />
+                        @Html.DisplayName(Model.PhoneNumber)
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr />
+
+        <div id="obtitle">
+            <h3>Objective</h3>
+        </div>
+        <br />
+        <div class="row" id="summary">
+            <div class="col-md-6">
+                @Html.DisplayFor(model => model.Summary)
+            </div>
+        </div>
+        <hr />
+    </div>
+    <div id="skilltitle">
+        <h2>Skills</h2>
+    </div>
+    <div class="col-md-6" id="skill">
+        @foreach (var item in Model.Skills)
+        {
+            <li>@Html.DisplayFor(modelItem => item.Skill)</li>
+        }
+        <div />
+        <hr />
+    </div>
+    <div>
+        <div>
+            <div class="row" id="workexperiance">
+                <h2>Work Experience</h2>
+            </div>
+            @foreach (var item in Model.JobHistory)
+            {
+                <div class="row" id="employer">
+                    @Html.DisplayFor(modelItem => item.Employer) <span id="empstartend">@Html.DisplayName(item.StartYear) - @Html.DisplayName(item.EndYear)</span>
+                </div>
+
+                @Html.DisplayName(item.City)
+                @Html.DisplayName(item.State)
+
+                <br />
+                <br />
+                foreach (var pos in item.Positions)
+                {
+
+                    @Html.DisplayFor(modelItem => pos.Title)
+
+                    <div class="container" id="description">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <ul>
+                                    @foreach (var dutie in pos.Duties)
+                                    {
+                                        <li>@Html.DisplayFor(modelItem => dutie.Description)</li>
+                                    }
+                                    <br>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                }
+            }
+        </div>
+    </div>
+    <hr />
+    <div class="row" id="education">
+        <h2>Education</h2>
+    </div>
+    <div>
+        @foreach (var edu in Model.Education)
+        {
+            <div class="row" id="school">
+                @Html.DisplayFor(modelItem => edu.School)
+            </div>
+            <div>
+                @Html.DisplayName(edu.Location)
+            </div>
+            <br />
+            <div>
+                @Html.DisplayFor(modelItem => edu.FieldOfStudy)
+            </div>
+            <br />
+            <div>
+                @Html.DisplayFor(modelItem => edu.Degree)
+            </div>
+        }
+    </div>
+    <hr />
+
+    <div class="row" id="refrences">
+        <h2>Refrences</h2>
+    </div>
+
+    @foreach (var refrence in Model.References)
+    {
+        <ul class="row" id="refprop">
+            <li>@Html.DisplayFor(modelItem => refrence.RefferenceName)</li>
+            @Html.DisplayName(refrence.Title)
+            @if (!String.IsNullOrEmpty(refrence.CompanyName))
+            {
+                <br />
+                @Html.DisplayName(refrence.CompanyName)
+            }
+            <br />
+            @Html.DisplayName(refrence.PhoneNumber)
+            <br />
+            @Html.DisplayFor(itemModel => refrence.EmailAddress)
+        </ul>
+    }
+
+</body>
+</html>
+

@@ -1,0 +1,66 @@
+﻿@model ResumeBuilderContext.Models.JobHistory
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>JobHistory</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Employer)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Employer)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.City)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.City)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.State)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.State)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.StartMonth)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.StartMonth)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.StartYear)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.StartYear)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.EndMonth)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.EndMonth)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.EndYear)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.EndYear)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CurrentlyEmployed)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CurrentlyEmployed)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.ID">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
