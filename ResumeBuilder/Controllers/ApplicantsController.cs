@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ResumeBuilderContext.Data;
 using ResumeBuilderContext.Models;
+using static Microsoft.AspNetCore.Hosting.Internal.HostingApplication;
 
 namespace ResumeBuilderContext.Controllers
 {
@@ -27,7 +28,7 @@ namespace ResumeBuilderContext.Controllers
 
         // GET: Applicants/Details/5
         public async Task<IActionResult> Details(int? id)
-        { 
+        {
 
             if (id == null)
             {
@@ -127,11 +128,45 @@ namespace ResumeBuilderContext.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var applicant = await _context.Applicant.SingleOrDefaultAsync(m => m.ID == id);
+            var applicant = await _context.Applicant.FirstOrDefaultAsync(m => m.ID == id);
+
+
+
+            foreach (var current in _context.Duties.Where(y => y.Position.JobHistories.ApplicantID == id))
+            {
+                _context.Duties.Remove(current);
+            }
+            foreach (var current in _context.Position.Where(y => y.JobHistories.ApplicantID == id))
+            {
+                _context.Position.Remove(current);
+            }
+            foreach (var current in _context.JobHistory.Where(y => y.ApplicantID == id))
+            {
+                _context.JobHistory.Remove(current);
+            }
+            foreach (var current in _context.Skills.Where(y => y.ApplicantID == id))
+            {
+                _context.Skills.Remove(current);
+            }
+            foreach (var current in _context.References.Where(y => y.ApplicantID == id))
+            {
+                _context.References.Remove(current);
+            }
+            foreach (var current in _context.Portfolio.Where(y => y.ApplicantID == id))
+            {
+                _context.Portfolio.Remove(current);
+            }
+            foreach (var current in _context.Education.Where(y => y.ApplicantID == id))
+            {
+                _context.Education.Remove(current);
+            }
+
             _context.Applicant.Remove(applicant);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
+
+
 
         private bool ApplicantExists(int id)
         {

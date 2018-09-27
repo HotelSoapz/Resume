@@ -68,7 +68,7 @@ namespace ResumeBuilderContext.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["Applicant"] = new SelectList(_context.Applicant, "ID", "FullName", jobHistory.Applicant);
+            ViewData["Applicant"] = new SelectList(_context.Applicant, "ID", "FullName", jobHistory.ID);
             return View(jobHistory);
         }
 
@@ -85,7 +85,7 @@ namespace ResumeBuilderContext.Controllers
             {
                 return NotFound();
             }
-            ViewData["Applicant"] = new SelectList(_context.Applicant, "ID", "FullName", jobHistory.Applicant);
+            ViewData["Applicant"] = new SelectList(_context.Applicant, "ID", "FullName", jobHistory.ID);
             return View(jobHistory);
 
         }
@@ -108,7 +108,7 @@ namespace ResumeBuilderContext.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["Applicant"] = new SelectList(_context.Applicant, "ID", "FullName", jobHistory.Applicant);
+            ViewData["Applicant"] = new SelectList(_context.Applicant, "ID", "FullName", jobHistory.ID);
             return View(jobHistory);
             
         }
