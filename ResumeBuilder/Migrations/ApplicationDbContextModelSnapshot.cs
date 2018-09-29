@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Storage.Internal;
 using ResumeBuilderContext.Data;
 using System;
 
-namespace ResumeBuilderContext.Data.Migrations
+namespace ResumeBuilder.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     partial class ApplicationDbContextModelSnapshot : ModelSnapshot

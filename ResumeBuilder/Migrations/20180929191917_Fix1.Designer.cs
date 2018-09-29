@@ -8,11 +8,11 @@ using Microsoft.EntityFrameworkCore.Storage.Internal;
 using ResumeBuilderContext.Data;
 using System;
 
-namespace ResumeBuilderContext.Data.Migrations
+namespace ResumeBuilder.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20180915171010_fix11")]
-    partial class fix11
+    [Migration("20180929191917_Fix1")]
+    partial class Fix1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -253,7 +253,8 @@ namespace ResumeBuilderContext.Data.Migrations
 
                     b.Property<string>("gradMonth");
 
-                    b.Property<DateTime>("gradYear");
+                    b.Property<string>("gradYear")
+                        .IsRequired();
 
                     b.HasKey("ID");
 
@@ -323,17 +324,17 @@ namespace ResumeBuilderContext.Data.Migrations
 
                     b.Property<bool>("CurrentPosition");
 
-                    b.Property<DateTime>("EndDate");
+                    b.Property<string>("EndYear");
 
-                    b.Property<int?>("JobHistoriesID");
+                    b.Property<int?>("JobHistoryID");
 
-                    b.Property<DateTime>("StartDate");
+                    b.Property<string>("StartYear");
 
                     b.Property<string>("Title");
 
                     b.HasKey("PositionID");
 
-                    b.HasIndex("JobHistoriesID");
+                    b.HasIndex("JobHistoryID");
 
                     b.ToTable("Position");
                 });
@@ -375,11 +376,7 @@ namespace ResumeBuilderContext.Data.Migrations
 
                     b.Property<int?>("ApplicantID");
 
-                    b.Property<string>("Function");
-
-                    b.Property<string>("Source");
-
-                    b.Property<string>("Type");
+                    b.Property<string>("Skill");
 
                     b.HasKey("ID");
 
@@ -436,7 +433,7 @@ namespace ResumeBuilderContext.Data.Migrations
             modelBuilder.Entity("ResumeBuilderContext.Models.Duties", b =>
                 {
                     b.HasOne("ResumeBuilderContext.Models.Position", "Position")
-                        .WithMany()
+                        .WithMany("Duties")
                         .HasForeignKey("PositionID");
                 });
 
@@ -465,7 +462,7 @@ namespace ResumeBuilderContext.Data.Migrations
                 {
                     b.HasOne("ResumeBuilderContext.Models.JobHistory", "JobHistories")
                         .WithMany("Positions")
-                        .HasForeignKey("JobHistoriesID");
+                        .HasForeignKey("JobHistoryID");
                 });
 
             modelBuilder.Entity("ResumeBuilderContext.Models.References", b =>
