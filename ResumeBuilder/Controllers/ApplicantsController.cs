@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -21,12 +22,14 @@ namespace ResumeBuilderContext.Controllers
         }
 
         // GET: Applicants
+        [Authorize]
         public async Task<IActionResult> Index()
         {
             return View(await _context.Applicant.ToListAsync());
         }
 
         // GET: Applicants/Details/5
+        [Authorize]
         public async Task<IActionResult> Details(int? id)
         {
 
@@ -54,6 +57,7 @@ namespace ResumeBuilderContext.Controllers
         // POST: Applicants/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("FirstName,LastName,StreedAddress,City,State,ZipCode,PhoneNumber,EmailAddress,Summary")] Applicant applicant)
@@ -68,6 +72,7 @@ namespace ResumeBuilderContext.Controllers
         }
 
         // GET: Applicants/Edit/5
+        [Authorize]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -86,6 +91,7 @@ namespace ResumeBuilderContext.Controllers
         // POST: Applicants/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("ID,FirstName,LastName,StreedAddress,City,State,ZipCode,PhoneNumber,EmailAddress,Summary")] Applicant applicant)
@@ -106,6 +112,7 @@ namespace ResumeBuilderContext.Controllers
         }
 
         // GET: Applicants/Delete/5
+        [Authorize]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -124,6 +131,7 @@ namespace ResumeBuilderContext.Controllers
         }
 
         // POST: Applicants/Delete/5
+        [Authorize]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

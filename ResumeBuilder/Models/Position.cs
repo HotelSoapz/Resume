@@ -14,9 +14,11 @@ namespace ResumeBuilderContext.Models
         public string Title { get; set; }
 
         [Display(Name = "Start Year")]
+        [RegularExpression(@"^[0-9]*$", ErrorMessage = "Start year must contain only numbers")]
         public string StartYear { get; set; }
 
         [Display(Name = "End Year")]
+        [RegularExpression(@"^[0-9]*$", ErrorMessage = "End year must contain only numbers")]
         public string EndYear { get; set; }
 
         [Display(Name = "Current Position")]

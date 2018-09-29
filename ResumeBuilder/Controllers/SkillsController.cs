@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -20,6 +21,7 @@ namespace ResumeBuilderContext.Controllers
         }
 
         // GET: Skills
+        [Authorize]
         public async Task<IActionResult> Index()
         {
             var ResumeBuilderContext = _context.Skills
@@ -29,6 +31,7 @@ namespace ResumeBuilderContext.Controllers
         }
 
         // GET: Skills/Details/5
+        [Authorize]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -49,6 +52,7 @@ namespace ResumeBuilderContext.Controllers
         }
 
         // GET: Skills/Create
+        [Authorize]
         public IActionResult Create()
         {
             ViewData["Applicant"] = new SelectList(_context.Applicant, "ID", "FullName");
@@ -58,6 +62,7 @@ namespace ResumeBuilderContext.Controllers
         // POST: Skills/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ID,Skill,ApplicantID")] Skills skills)
@@ -73,6 +78,7 @@ namespace ResumeBuilderContext.Controllers
         }
 
         // GET: Skills/Edit/5
+        [Authorize]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -92,6 +98,7 @@ namespace ResumeBuilderContext.Controllers
         // POST: Skills/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("ID,Skill,ApplicantID")] Skills skills)
@@ -112,6 +119,7 @@ namespace ResumeBuilderContext.Controllers
         }
 
         // GET: Skills/Delete/5
+        [Authorize]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -130,6 +138,7 @@ namespace ResumeBuilderContext.Controllers
         }
 
         // POST: Skills/Delete/5
+        [Authorize]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

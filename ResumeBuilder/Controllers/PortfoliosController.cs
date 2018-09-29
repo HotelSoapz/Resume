@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -20,6 +21,7 @@ namespace ResumeBuilderContext.Controllers
         }
 
         // GET: Portfolios
+        [Authorize]
         public async Task<IActionResult> Index()
         {
             var ResumeBuilderContext = _context.Portfolio
@@ -29,6 +31,7 @@ namespace ResumeBuilderContext.Controllers
         }
 
         // GET: Portfolios/Details/5
+        [Authorize]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -49,6 +52,7 @@ namespace ResumeBuilderContext.Controllers
         }
 
         // GET: Portfolios/Create
+        [Authorize]
         public IActionResult Create()
         {
             ViewData["Applicant"] = new SelectList(_context.Applicant, "ID", "FullName");
@@ -58,6 +62,7 @@ namespace ResumeBuilderContext.Controllers
         // POST: Portfolios/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ID,Link1,Link2,Link3")] Portfolio portfolio)
@@ -73,6 +78,7 @@ namespace ResumeBuilderContext.Controllers
         }
 
         // GET: Portfolios/Edit/5
+        [Authorize]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -92,6 +98,7 @@ namespace ResumeBuilderContext.Controllers
         // POST: Portfolios/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("ID,Link1,Link2,Link3,ApplicantID")] Portfolio portfolio)
@@ -111,6 +118,7 @@ namespace ResumeBuilderContext.Controllers
         }
 
         // GET: Portfolios/Delete/5
+        [Authorize]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -129,6 +137,7 @@ namespace ResumeBuilderContext.Controllers
         }
 
         // POST: Portfolios/Delete/5
+        [Authorize]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -20,6 +21,7 @@ namespace ResumeBuilderContext.Controllers
         }
 
         // GET: Positions
+        [Authorize]
         public async Task<IActionResult> Index()
         {
             var ResumeBuilderContext = _context.Position
@@ -29,6 +31,7 @@ namespace ResumeBuilderContext.Controllers
         }
 
         // GET: Positions/Details/5
+        [Authorize]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -50,6 +53,7 @@ namespace ResumeBuilderContext.Controllers
         }
 
         // GET: Positions/Create
+        [Authorize]
         public IActionResult Create()
         {
             ViewData["JobHistory"] = new SelectList(_context.JobHistory, "ID", "Employer");
@@ -59,6 +63,7 @@ namespace ResumeBuilderContext.Controllers
         // POST: Positions/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ID,Title,StartYear,EndYear,JobHistoryID")] Position position)
@@ -74,6 +79,7 @@ namespace ResumeBuilderContext.Controllers
         }
 
         // GET: Positions/Edit/5
+        [Authorize]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -93,6 +99,7 @@ namespace ResumeBuilderContext.Controllers
         // POST: Positions/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("PositionID,Title,StartYear,EndYear,JobHistoryID")] Position position)
@@ -114,6 +121,7 @@ namespace ResumeBuilderContext.Controllers
         }
 
         // GET: Positions/Delete/5
+        [Authorize]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -132,6 +140,7 @@ namespace ResumeBuilderContext.Controllers
         }
 
         // POST: Positions/Delete/5
+        [Authorize]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

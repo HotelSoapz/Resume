@@ -3,4 +3,8 @@
 @using ResumeBuilderContext.Models
 @using ResumeBuilderContext.Models.AccountViewModels
 @using ResumeBuilderContext.Models.ManageViewModels
+@using Microsoft.AspNetCore.Authorization
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@inject IAuthorizationService AuthorizationServices
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager

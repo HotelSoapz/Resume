@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -26,23 +28,24 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">Resume</a>
+                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">My Resume</a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    @*<li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>*@
-                    <li><a asp-area="" asp-controller="Applicants" asp-action="Index">Applicant</a></li>
-                    <li><a asp-area="" asp-controller="JobHistories" asp-action="Index">JobHistory</a></li>
-                    <li><a asp-area="" asp-controller="Educations" asp-action="Index">Education</a></li>
-                    <li><a asp-area="" asp-controller="Positions" asp-action="Index">Position</a></li>
-                    <li><a asp-area="" asp-controller="Duties" asp-action="Index">Duties</a></li>
-                    <li><a asp-area="" asp-controller="Skills" asp-action="Index">Skills</a></li>
-                    <li><a asp-area="" asp-controller="References" asp-action="Index">References</a></li>
-                    <li><a asp-area="" asp-controller="Portfolios" asp-action="Index">Portfolio</a></li>
 
-
+                    @{
+                        //var result3 = await AuthorizationServices.AuthorizeAsync();
+                        @if (SignInManager.IsSignedIn(User))
+                        {
+                            <li><a asp-area="" asp-controller="Applicants" asp-action="Index">Applicant</a></li>
+                            <li><a asp-area="" asp-controller="JobHistories" asp-action="Index">JobHistory</a></li>
+                            <li><a asp-area="" asp-controller="Educations" asp-action="Index">Education</a></li>
+                            <li><a asp-area="" asp-controller="Positions" asp-action="Index">Position</a></li>
+                            <li><a asp-area="" asp-controller="Duties" asp-action="Index">Duties</a></li>
+                            <li><a asp-area="" asp-controller="Skills" asp-action="Index">Skills</a></li>
+                            <li><a asp-area="" asp-controller="References" asp-action="Index">References</a></li>
+                            <li><a asp-area="" asp-controller="Portfolios" asp-action="Index">Portfolio</a></li>
+                        } }
                 </ul>
                 @await Html.PartialAsync("_LoginPartial")
             </div>

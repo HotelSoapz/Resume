@@ -137,6 +137,10 @@
             position: relative;
             right: 25px;
         }
+        #portfolio{
+            position: relative;
+            right: 25px;
+        }
 
         #refprop {
             position: relative;
@@ -163,9 +167,8 @@
             left: 18px;
         }
 
-        #addressdetail{
+        #addressdetail {
             position: relative;
-            
         }
     </style>
     <style type="text/css" media="print">
@@ -239,10 +242,10 @@
                 <div class="row" id="employer">
                     @Html.DisplayFor(modelItem => item.Employer) <span id="empstartend">@Html.DisplayName(item.StartYear) - @Html.DisplayName(item.EndYear)</span>
                 </div>
-
-                @Html.DisplayName(item.City)
-                @Html.DisplayName(item.State)
-
+                <span>
+                    @Html.DisplayName(item.City)
+                    @Html.DisplayName(item.State)
+                </span>
                 <br />
                 <br />
                 foreach (var pos in item.Positions)
@@ -312,6 +315,24 @@
             <br />
             @Html.DisplayFor(itemModel => refrence.EmailAddress)
         </ul>
+
+    }
+        <div class="row" id="portfolio">
+            <h2>Portfolio</h2>
+        </div>
+    @foreach (var portfolio in Model.Portfolio)
+    {
+        <ul class="row" id="links">
+
+            <li>@Html.DisplayFor(modelItem => portfolio.Link1)</li>
+            <li>@Html.DisplayFor(modelItem => portfolio.Link2)</li>
+            @if (!String.IsNullOrEmpty(portfolio.Link3))
+            {
+                <li>@Html.DisplayFor(modelItem => portfolio.Link3)</li>
+            }
+        </ul>
+
+
     }
 
 </body>
